@@ -22,12 +22,11 @@ body {
 }
 
 main {
-    width: 450px;
-    margin: 50px auto 0px auto;
-    border: .5px solid;
-    border-color: darkgray;
-    background-color: lightgrey;
-    border-radius: 15px;
+  width: 450px;
+  height: auto;
+  padding: 50px;
+  margin: 75px auto auto auto;
+  background-color: white;
 }
 
 /*

@@ -1,6 +1,8 @@
 nav#nav-bar {
-  position: relative;
+  position: fixed;
   height: 80px;
+  width: 100%;
+  top: -5px;
   background-color: #00a087;
   color: #e8fdff;
   padding: 0 2em;
