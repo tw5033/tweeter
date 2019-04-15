@@ -1,0 +1,17 @@
+section.new-tweet {
+    padding: 1em 2em;
+}
+
+span.counter {
+    float: right;
+}
+
+textarea {
+  width: 100%;
+  padding: 0.5em;
+}
+
+h2#compose {
+  border-bottom: 1px solid;
+
+}
