@@ -35,17 +35,24 @@ $(document).ready(function() {
     const iTwo = $("<i>").addClass("fas fa-flag");
     const iThree = $("<i>").addClass("fas fa-retweet");
 
-    // setting data into html tags
+    //setting data into html tags
     img.attr("src", data.user.avatars.large);
     span.html(data.user.name);
     h6.html(data.user.handle);
-    article.html()
+    article.html(data.content.text);
+    p.html(data.created_at);
 
     // appending child tags to parent
+    p.append(iOne);
+    p.append(iTwo);
+    p.append(iThree);
     header.append(img);
     header.append(span);
     header.append(h6);
+    footer.append(p);
     div.append(header);
+    div.append(article);
+    div.append(footer);
     section.append(div);
 
     return section;
