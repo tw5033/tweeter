@@ -1,0 +1,49 @@
+section.tweets {
+  width: 400px;
+  border-radius: 15px;
+  border: 1px solid;
+  border-color: black;
+  opacity: 0.6;
+  margin: 5px;
+}
+
+header {
+  background-color: lightgray;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 0.5em;
+}
+
+header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+footer {
+  border-top: 1px solid;
+  padding: 0 0.5em;
+}
+
+section h6 {
+  float: right;
+  line-height: 250%;
+}
+
+.tweet {
+  padding: 1em;
+}
+
+.avatar {
+  float: left;
+  height: 60px;
+  width: 60px;
+  padding-top: 10px;
+}
+
+.user {
+  float: left;
+  font-size: 150%;
+  padding-left: 10px;
+  line-height: 300%;
+}

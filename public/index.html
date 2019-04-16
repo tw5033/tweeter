@@ -19,6 +19,9 @@
     <!-- New Tweets CSS -->
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
+    <!-- Tweets CSS -->
+    <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
+
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
@@ -32,7 +35,7 @@
 
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
-      <img class="logo" src="/images/bird.png"  >
+      <img class="logo" src="/images/bird.png">
       <span class="header">Tweeter</span>
     </nav>
 
@@ -48,7 +51,15 @@
       </section>
       <section class="tweets">
         <div class="content">
-          <header>Newton</header>
+          <header>
+            <img class="avatar" src="/images/bird.png">
+            <span class="user">Tweeter</span>
+            <h6 class='handle'>@tweeter</h6>
+          </header>
+          <article class="tweet">Hello this is my tweet!</article>
+          <footer>
+            <p>10 days ago</p>
+          </footer>
         </div>
       </section>
     </main>

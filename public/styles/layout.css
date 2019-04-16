@@ -14,7 +14,14 @@ html {
  * Global layout stuff
  */
 
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 body {
+  display: flex;
+  justify-content: center;
   font-family: 'Roboto Condensed', sans-serif;
   margin: 0;
   color: #244751;
@@ -25,7 +32,7 @@ main {
   width: 450px;
   height: auto;
   padding: 50px;
-  margin: 75px auto auto auto;
+  margin-top: 70px;
   background-color: white;
 }
 
