@@ -8,12 +8,7 @@ section.tweets {
 }
 
 section.tweets:hover {
-  width: 400px;
-  border-radius: 15px;
-  border: 1px solid;
-  border-color: black;
   opacity: 1;
-  margin: 15px 5px;
 }
 
 header {
@@ -47,9 +42,7 @@ footer i {
 }
 
 section.tweets:hover footer i {
-  float: right;
   opacity: 1;
-  padding: 0.15em;
 }
 
 section h6 {
