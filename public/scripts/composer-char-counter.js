@@ -6,6 +6,8 @@ $(document).ready(function() {
     $('.counter').text(currentLength);
     if(currentLength < 0) {
       $('.counter').css('color', 'red');
+    } else {
+      $('.counter').css('color', 'black');
     }
   });
   $('.counter').text(currentLength);
