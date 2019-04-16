@@ -19,7 +19,7 @@ $(document).ready(function() {
       "content": {
         "text": "If I have seen further it is by standing on the shoulders of giants"
       },
-      "created_at": 1461116232227
+      "created_at": 1555455600227
     },
     {
       "user": {
@@ -33,7 +33,7 @@ $(document).ready(function() {
       "content": {
         "text": "Je pense , donc je suis"
       },
-      "created_at": 1461113959088
+      "created_at": 1555458483113
     },
     {
       "user": {
@@ -48,43 +48,54 @@ $(document).ready(function() {
       "content": {
         "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
       },
-      "created_at": 1461113796368
+      "created_at": 1553324400000
     }
   ];
 
-  const createTweetElement = function(data) {
-    // create all the html tags
-    const section = $("<section>").addClass("tweets");
-    const div = $("<div>").addClass("content");
-    const header = $("<header>");
-    const img = $("<img>").addClass("avatar");
-    const span = $("<span>").addClass("user");
-    const h6 = $("<h6>").addClass("handle");
-    const article = $("<article>").addClass("tweet");
-    const footer = $("<footer>");
-    const p = $("<p>");
-    const iOne = $("<i>").addClass("fas fa-heart");
-    const iTwo = $("<i>").addClass("fas fa-retweet");
-    const iThree = $("<i>").addClass("fas fa-flag");
+  // compares tweet timestamp and current time and displays in human readable format
+  const dateConverter = function(date) {
+    let now = Date.now();
+    let difference = Math.floor((now - date) / 1000);
+    if(difference < 60) {
+      return `${difference} seconds ago`;
+    } else if (difference < 3600) {
+      difference = Math.floor(difference / 60);
+      return `${difference} minutes ago`;
+    } else if (difference < 86400) {
+      difference = Math.floor(difference / 3600);
+      return `${difference} hours ago`;
+    }
+    difference = Math.floor(difference / 86400);
+    return `${Math.floor(difference)} days ago`;
+  }
 
-    //setting data into html tags
-    img.attr("src", data.user.avatars.large);
-    span.html(data.user.name);
-    h6.html(data.user.handle);
-    article.html(data.content.text);
-    p.html(data.created_at);
+  const createTweetElement = function(data) {
+    let time = dateConverter(data.created_at);
+    // create all the html tags and add data into them
+    let section = $("<section>").addClass("tweets");
+    let div = $("<div>").addClass("content");
+    let header = $("<header>");
+    let img = $("<img>").addClass("avatar").attr("src", data.user.avatars.large);
+    let span = $("<span>").addClass("user").html(data.user.name);
+    let h6 = $("<h6>").addClass("handle").html(data.user.handle);
+    let article = $("<article>").addClass("tweet").html(data.content.text);
+    let footer = $("<footer>");
+    let p = $("<p>").html(time);
+    let iOne = $("<i>").addClass("fas fa-heart");
+    let iTwo = $("<i>").addClass("fas fa-retweet");
+    let iThree = $("<i>").addClass("fas fa-flag");
 
     // appending child tags to parent
-    p.append(iOne);
-    p.append(iTwo);
-    p.append(iThree);
-    header.append(img);
-    header.append(span);
-    header.append(h6);
+    p.append(iOne)
+     .append(iTwo)
+     .append(iThree);
+    header.append(img)
+          .append(span)
+          .append(h6);
     footer.append(p);
-    div.append(header);
-    div.append(article);
-    div.append(footer);
+    div.append(header)
+       .append(article)
+       .append(footer);
     section.append(div);
 
     return section;
