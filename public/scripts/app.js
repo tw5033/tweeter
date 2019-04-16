@@ -21,12 +21,39 @@ $(document).ready(function() {
   }
 
   const createTweetElement = function(data) {
-    const $section = $("<section>")
+    // create all the html tags
+    const section = $("<section>").addClass("tweets");
+    const div = $("<div>").addClass("content");
+    const header = $("<header>");
+    const img = $("<img>").addClass("avatar");
+    const span = $("<span>").addClass("user");
+    const h6 = $("<h6>").addClass("handle");
+    const article = $("<article>").addClass("tweet");
+    const footer = $("<footer>");
+    const p = $("<p>");
+    const iOne = $("<i>").addClass("fas fa-heart");
+    const iTwo = $("<i>").addClass("fas fa-flag");
+    const iThree = $("<i>").addClass("fas fa-retweet");
+
+    // setting data into html tags
+    img.attr("src", data.user.avatars.large);
+    span.html(data.user.name);
+    h6.html(data.user.handle);
+    article.html()
+
+    // appending child tags to parent
+    header.append(img);
+    header.append(span);
+    header.append(h6);
+    div.append(header);
+    section.append(div);
+
+    return section;
   }
 
   var $tweet = createTweetElement(tweetData);
 
   // Test / driver code (temporary)
   console.log($tweet); // to see what it looks like
-  $('#tweets-container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+  $('.container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
 });
