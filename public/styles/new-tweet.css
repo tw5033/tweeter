@@ -1,4 +1,5 @@
 section.new-tweet {
+  width: 150em;
   padding: 1em 2em;
   border-radius: 15px;
   border: 1px solid;
@@ -18,4 +19,19 @@ textarea {
 h2#compose {
   border-bottom: 1px solid;
 
+}
+
+div.isa_error {
+  text-align: center;
+  width: 100%;
+  padding: 0.3em;
+  margin-bottom: 0.2em;
+  display: none;
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+div.isa_error i {
+  margin-right: 0.25em;
 }

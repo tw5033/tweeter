@@ -63,11 +63,17 @@ $(() => {
   }
 
   const validateTweet = function() {
-    let input = $("[name=text]").val();
+    let input = $("#tweet").val();
+    let error = $(".isa_error");
+    let icon = $("<i>").addClass("fas fa-times-circle");
     if(input === "" || input === null) {
-      alert("You cannot tweet an empty message!");
+      error.text('Your tweet cannot be empty!');
+      error.prepend(icon);
+      error.slideDown();
     } else if(input.length > 140) {
-      alert("Your tweet cannot be over 140 characters in length!");
+      error.text('Your tweet cannot be over 140 characters!');
+      error.prepend(icon);
+      error.slideDown();
     } else {
       return true;
     }
@@ -86,12 +92,12 @@ $(() => {
   const form = $(".new_tweet");
   form.on("submit", function() {
     event.preventDefault();
+    $(".isa_error").slideUp();
     let $field = $(this).serialize();
-    if(validateTweet) {
+    if(validateTweet()) {
       $.post("/tweets", $field, () => {
         loadTweets();
       });
     }
   });
-
 });

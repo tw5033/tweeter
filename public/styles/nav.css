@@ -21,3 +21,30 @@ nav#nav-bar {
   float: left;
   line-height: 250%;
 }
+
+#nav-bar .compose {
+  text-align: center;
+  position: relative;
+  float: right;
+  background-color: linen;
+  top: 1.5em;
+  padding: 0.2em;
+  border: 0.25em solid;
+}
+
+/*https://css-tricks.com/overriding-default-button-styles/*/
+#nav-bar .compose:hover,
+#nav-bar .compose:focus {
+    background: #0053ba;
+    color: linen;
+}
+
+#nav-bar .compose:focus {
+    color: linen;
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+#nav-bar .compose i {
+  padding-right: 0.5em;
+}
