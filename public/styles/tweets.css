@@ -1,10 +1,11 @@
 section.tweets {
-  width: 97%;
+  width: 20em;
   border-radius: 15px;
   border: 1px solid;
   border-color: black;
   opacity: 0.6;
   margin: 15px 5px;
+  word-wrap: break-word;
 }
 
 section.tweets:hover {
@@ -49,6 +50,8 @@ section h6 {
   float: right;
   line-height: 250%;
 }
+
+
 
 .tweet {
   padding: 1em;
