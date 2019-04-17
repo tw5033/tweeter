@@ -9,6 +9,8 @@ $(() => {
   const dateConverter = (date) => {
     let now = Date.now();
     let difference = Math.floor((now - date) / 1000);
+    console.log(`now: ${now}`);
+    console.log(`date: ${date}`);
     if(difference < 60) {
       return `${difference} seconds ago`;
     } else if (difference < 3600) {
