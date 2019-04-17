@@ -62,23 +62,33 @@ $(() => {
     }
   }
 
-  // ajax post form
-  const form = $(".new_tweet");
-  form.on("submit", function() {
-    event.preventDefault();
-    let $field = $(this).serialize();
-    let input = $field.slice(5);
-    if(input === '' || input === null) {
+  const validateTweet = function() {
+    let input = $("[name=text]").val();
+    console.log(input);
+    if(input === "" || input === null) {
       alert("You cannot tweet an empty message!");
     } else if(input.length > 140) {
       alert("Your tweet cannot be over 140 characters in length!");
     } else {
-      $.post("/tweets", $field);
+      return true;
     }
+  }
+
+  const loadTweets = () => {
+    $.get("/tweets", (data) => {
+      $('.tweets').empty();
+      renderTweets(data);
+    });
+  }
+
+   // ajax post form
+  const form = $(".new_tweet");
+  form.on("submit", function() {
+    event.preventDefault();
+    let $field = $(this).serialize();
+    console.log(validateTweet());
+    // $.post("/tweets", $field);
   });
 
-  $.get("/tweets", (data) => {
-    renderTweets(data);
-  });
-
+  loadTweets();
 });
