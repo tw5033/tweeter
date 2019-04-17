@@ -57,14 +57,13 @@ $(() => {
   const renderTweets = (tweets) => {
     for(let i = tweets.length - 1; i >= 0; i--) {
       let tweet = createTweetElement(tweets[i]);
-      $(".container").append(tweet);
+      $(".tweet-container").append(tweet);
 
     }
   }
 
   const validateTweet = function() {
     let input = $("[name=text]").val();
-    console.log(input);
     if(input === "" || input === null) {
       alert("You cannot tweet an empty message!");
     } else if(input.length > 140) {
@@ -76,19 +75,23 @@ $(() => {
 
   const loadTweets = () => {
     $.get("/tweets", (data) => {
-      $('.tweets').empty();
+      $('.tweet-container').empty();
       renderTweets(data);
     });
   }
+
+  loadTweets();
 
    // ajax post form
   const form = $(".new_tweet");
   form.on("submit", function() {
     event.preventDefault();
     let $field = $(this).serialize();
-    console.log(validateTweet());
-    // $.post("/tweets", $field);
+    if(validateTweet) {
+      $.post("/tweets", $field, () => {
+        loadTweets();
+      });
+    }
   });
 
-  loadTweets();
 });
