@@ -3,57 +3,10 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$(document).ready(function() {
-  // Fake data taken from tweets.json
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": {
-          "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-          "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-          "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-        },
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1555455600227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": {
-          "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-          "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-          "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-        },
-        "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1555458483113
-    },
-    {
-      "user": {
-        "name": "Johann von Goethe",
-        "avatars": {
-          "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-          "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-          "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-        },
-        "handle": "@johann49"
-      },
-      "content": {
-        "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-      },
-      "created_at": 1553324400000
-    }
-  ];
+$(() => {
 
   // compares tweet timestamp and current time and displays in human readable format
-  const dateConverter = function(date) {
+  const dateConverter = (date) => {
     let now = Date.now();
     let difference = Math.floor((now - date) / 1000);
     if(difference < 60) {
@@ -69,7 +22,7 @@ $(document).ready(function() {
     return `${Math.floor(difference)} days ago`;
   }
 
-  const createTweetElement = function(data) {
+  const createTweetElement = (data) => {
     let time = dateConverter(data.created_at);
     // create all the html tags and add data into them
     let section = $("<section>").addClass("tweets");
@@ -101,13 +54,31 @@ $(document).ready(function() {
     return section;
   }
 
-  const renderTweets = function(tweets) {
-    tweets.forEach((data) => {
-      let tweet = createTweetElement(data);
+  const renderTweets = (tweets) => {
+    for(let i = tweets.length - 1; i >= 0; i--) {
+      let tweet = createTweetElement(tweets[i]);
       $(".container").append(tweet);
-    });
+
+    }
   }
 
-  renderTweets(data);
+  // ajax post form
+  const form = $(".new_tweet");
+  form.on("submit", function() {
+    event.preventDefault();
+    let $field = $(this).serialize();
+    let input = $field.slice(5);
+    if(input === '' || input === null) {
+      alert("You cannot tweet an empty message!");
+    } else if(input.length > 140) {
+      alert("Your tweet cannot be over 140 characters in length!");
+    } else {
+      $.post("/tweets", $field);
+    }
+  });
+
+  $.get("/tweets", (data) => {
+    renderTweets(data);
+  });
 
 });
