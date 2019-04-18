@@ -39,6 +39,7 @@ footer p:after {
 footer i {
   float: right;
   opacity: 0;
+  color: #00a087;
   padding: 0.15em;
 }
 
@@ -51,7 +52,12 @@ section h6 {
   line-height: 250%;
 }
 
-
+footer .like {
+  background: transparent;  
+  float: right;
+  margin: none;
+  border: none;
+}
 
 .tweet {
   padding: 1em;
@@ -59,18 +65,15 @@ section h6 {
 
 .avatar {
   float: left;
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
   padding-top: 10px;
 }
 
 .user {
   float: left;
-  font-size: 150%;
+  font-size: 120%;
   padding-left: 10px;
   line-height: 300%;
 }
 
-.icons {
-  float: right;
-}

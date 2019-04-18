@@ -29,7 +29,8 @@ module.exports = function(DataHelpers) {
       content: {
         text: req.body.text
       },
-      created_at: Date.now()
+      created_at: Date.now(),
+      num_likes: 0
     };
 
     DataHelpers.saveTweet(tweet, (err) => {
@@ -39,6 +40,11 @@ module.exports = function(DataHelpers) {
         res.status(201).send();
       }
     });
+  });
+
+  tweetsRoutes.put("/", function(req, res) {
+    console.log("hello");
+    res.status(201).send();
   });
 
   return tweetsRoutes;

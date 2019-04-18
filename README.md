@@ -39,9 +39,9 @@ Compose Tweet box:
 - is displayed above the list of tweets
 - is hidden on page load
 - contains a form for submitting tweets, which itself contains:
-- a textarea for new tweet content
-- a left-aligned button for submitting new tweets
-- contains a Character Counter, right-aligned, which by default shows   140
+    - a textarea for new tweet content
+    - a left-aligned button for submitting new tweets
+    - contains a Character Counter, right-aligned, which by default shows   140
 
 List of Tweets:
 
@@ -50,13 +50,13 @@ List of Tweets:
 Individual Tweets:
 
 - have a header, which contains the user's:
-- avatar, on the left
-- name, on the left and after the avatar
-- handle, on the right
+    - avatar, on the left
+    - name, on the left and after the avatar
+    - handle, on the right
 - have a body, which contains the tweet text
 - have a footer, which displays:
-- how long ago the tweet was created, on the left
-- "Flag", "Re-tweet" and "Like" icons upon hovering over the tweet,  on the right
+    - how long ago the tweet was created, on the left
+    - "Flag", "Re-tweet" and "Like" icons upon hovering over the tweet,  on the right
 
 ### Behaviour
 

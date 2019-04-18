@@ -18,12 +18,14 @@ const createTweetElement = (data) => {
   let article = $("<article>").addClass("tweet").text(data.content.text);
   let footer = $("<footer>");
   let p = $("<p>").text(moment(data.created_at).fromNow());
-  let iOne = $("<i>").addClass("fas fa-heart");
+  let button = $("<button>").addClass("like").data("id", data._id);
+  let iOne = $("<i>").addClass("fas fa-heart").text(102);
   let iTwo = $("<i>").addClass("fas fa-retweet");
   let iThree = $("<i>").addClass("fas fa-flag");
 
   // appending child tags to parent
-  p.append(iOne)
+  button.append(iOne);
+  p.append(button)
    .append(iTwo)
    .append(iThree);
   header.append(img)
@@ -48,7 +50,7 @@ const renderTweets = (tweets) => {
 }
 
 // validates user input for new tweet
-const validateTweet = function() {
+const validateTweet = () => {
   let input = $("#tweet").val();
   let error = $(".isa_error");
   let icon = $("<i>").addClass("fas fa-times-circle");
@@ -73,6 +75,7 @@ const loadTweets = () => {
   });
 }
 
+
 $(() => {
   // ajax post form
   const form = $(".new_tweet");
@@ -83,10 +86,24 @@ $(() => {
     if(validateTweet()) {
       $.post("/tweets", $field, () => {
         loadTweets();
+        $("#tweet").val("");
+        $(".counter").text(140);
       });
     }
   });
-  
+ 
+  $(".tweet-container").on("click", ".like", function() {
+    event.preventDefault();
+    let id = $(".like").data("id");
+    $.ajax(
+      { url: "/tweets", 
+        method: "PUT" ,
+        data: { id: id },
+        success: () => {
+          console.log('hello');
+        }
+      });
+  });
   loadTweets();  
 });
 
