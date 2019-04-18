@@ -1,3 +1,5 @@
+/* global $ */
+
 $(() => {
   const maxCount = 140;
   let currentLength = maxCount;

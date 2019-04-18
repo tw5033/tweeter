@@ -1,3 +1,5 @@
+/* global $ */
+
 $(() => {
   const button = $('.compose');
   const newTweet = $(".new-tweet");
