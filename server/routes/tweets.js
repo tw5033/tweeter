@@ -43,7 +43,10 @@ module.exports = function(DataHelpers) {
   });
 
   tweetsRoutes.put("/", function(req, res) {
-    console.log("hello");
+    if(!req.body.id) {
+      res.status(400).send("No data passed through!");
+    }
+    DataHelpers.likeTweet(req.body.id, req.body.colour);
     res.status(201).send();
   });
 

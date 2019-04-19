@@ -1,5 +1,6 @@
 "use strict";
 
+const {ObjectID} = require("mongodb");
 // Defines helper functions for saving and getting tweets, using the database `db`
 module.exports = function makeDataHelpers(db) {
   return {
@@ -26,7 +27,20 @@ module.exports = function makeDataHelpers(db) {
         callback(null, tweets.sort(sortNewestFirst));
       });
 
-    }
+    },
 
-  };
-}
+    likeTweet: (tweetID, colour) => {
+      if(colour === 'red') {
+        db.collection("tweets").findOneAndUpdate(
+          { _id: ObjectID(tweetID) },
+          { $inc: {num_likes: -1} }
+        );
+      } else {
+        db.collection("tweets").findOneAndUpdate(
+          { _id: ObjectID(tweetID) },
+          { $inc: {num_likes: 1} }
+        );
+      }
+    }
+  }
+};

@@ -19,7 +19,7 @@ const createTweetElement = (data) => {
   let footer = $("<footer>");
   let p = $("<p>").text(moment(data.created_at).fromNow());
   let button = $("<button>").addClass("like").data("id", data._id);
-  let iOne = $("<i>").addClass("fas fa-heart").text(102);
+  let iOne = $("<i>").addClass("fas fa-heart").text(data.num_likes).data("code", data._id);
   let iTwo = $("<i>").addClass("fas fa-retweet");
   let iThree = $("<i>").addClass("fas fa-flag");
 
@@ -75,6 +75,27 @@ const loadTweets = () => {
   });
 }
 
+// likes a tweet when the heart icon is clicked
+const likeTweet = () => {
+  let id = $(".like").data("id");
+  let target = $(event.target);
+  if(target.css('color') === "rgb(255, 0, 0)") {
+    $.ajax(
+      { url: "/tweets", 
+        method: "PUT" ,
+        data: { id: id, colour: "red" }
+      });
+    target.css("color", "#00a087"); 
+  } else  {
+      $.ajax(
+        { url: "/tweets", 
+          method: "PUT" ,
+          data: { id: id, colour: "other" }
+        });
+      target.css("color", "red"); 
+   }
+ }
+
 
 $(() => {
   // ajax post form
@@ -94,15 +115,7 @@ $(() => {
  
   $(".tweet-container").on("click", ".like", function() {
     event.preventDefault();
-    let id = $(".like").data("id");
-    $.ajax(
-      { url: "/tweets", 
-        method: "PUT" ,
-        data: { id: id },
-        success: () => {
-          console.log('hello');
-        }
-      });
+    likeTweet(); 
   });
   loadTweets();  
 });

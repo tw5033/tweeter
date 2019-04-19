@@ -55,7 +55,11 @@ section h6 {
 footer .like {
   background: transparent;  
   float: right;
-  margin: none;
+  margin: 0 0 0 -0.5em;
+  border: none;
+}
+
+footer .like:active {
   border: none;
 }
 
