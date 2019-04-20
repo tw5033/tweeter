@@ -18,14 +18,16 @@ const createTweetElement = (data) => {
   let article = $("<article>").addClass("tweet").text(data.content.text);
   let footer = $("<footer>");
   let p = $("<p>").text(moment(data.created_at).fromNow());
+  let likeCount = $("<div>").addClass("likes").text(data.num_likes);
   let button = $("<button>").addClass("like").data("id", data._id);
-  let iOne = $("<i>").addClass("fas fa-heart").text(data.num_likes).data("code", data._id);
+  let iOne = $("<i>").addClass("fas fa-heart");
   let iTwo = $("<i>").addClass("fas fa-retweet");
   let iThree = $("<i>").addClass("fas fa-flag");
 
   // appending child tags to parent
   button.append(iOne);
-  p.append(button)
+  p.append(likeCount)
+   .append(button)
    .append(iTwo)
    .append(iThree);
   header.append(img)
@@ -75,6 +77,18 @@ const loadTweets = () => {
   });
 }
 
+// redraws the like count on click
+const redrawCount = (id) => {
+  $.get("/tweets", (tweets) => {
+    tweets.forEach((tweet) => {
+      if(id === tweet._id) {
+        $(".likes").empty();
+        $(".likes").text(tweet.num_likes);
+      }
+    });
+  });
+}
+
 // likes a tweet when the heart icon is clicked
 const likeTweet = () => {
   let id = $(".like").data("id");
@@ -86,6 +100,7 @@ const likeTweet = () => {
         data: { id: id, colour: "red" }
       });
     target.css("color", "#00a087"); 
+    redrawCount(id);
   } else  {
       $.ajax(
         { url: "/tweets", 
@@ -93,8 +108,11 @@ const likeTweet = () => {
           data: { id: id, colour: "other" }
         });
       target.css("color", "red"); 
+      redrawCount(id);
    }
  }
+
+
 
 
 $(() => {
@@ -115,7 +133,7 @@ $(() => {
  
   $(".tweet-container").on("click", ".like", function() {
     event.preventDefault();
-    likeTweet(); 
+    likeTweet();
   });
   loadTweets();  
 });

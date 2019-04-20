@@ -59,8 +59,15 @@ footer .like {
   border: none;
 }
 
-footer .like:active {
-  border: none;
+footer .like:focus {
+  outline: none;
+}
+
+footer p div {
+  float: right;
+  font-weight: bold;
+  line-height: 150%;
+  color: #00a087; 
 }
 
 .tweet {

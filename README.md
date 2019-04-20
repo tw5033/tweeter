@@ -15,7 +15,6 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
-- SASS
 - MongoDB
 - Chance
 - MD5
@@ -30,33 +29,33 @@ This repository is the starter code for the project: Students will fork and clon
 ### Display Requirements
 Navigation Bar:
 
-- is fixed to the top
-- has padding on both sides
-- contains Compose button
+- is fixed to the top :white_check_mark:
+- has padding on both sides :white_check_mark:
+- contains Compose button :white_check_mark:
 
 Compose Tweet box:
 
-- is displayed above the list of tweets
-- is hidden on page load
+- is displayed above the list of tweets :white_check_mark:
+- is hidden on page load :white_check_mark:
 - contains a form for submitting tweets, which itself contains:
-    - a textarea for new tweet content
-    - a left-aligned button for submitting new tweets
-    - contains a Character Counter, right-aligned, which by default shows   140
+    - a textarea for new tweet content :white_check_mark:
+    - a left-aligned button for submitting new tweets :white_check_mark:
+    - contains a Character Counter, right-aligned, which by default shows   140 :white_check_mark:s
 
 List of Tweets:
 
-- displays tweets in reverse-chronological order (that is, by       creation time descending)
+- displays tweets in reverse-chronological order (that is, by       creation time descending) :white_check_mark:
 
 Individual Tweets:
 
 - have a header, which contains the user's:
-    - avatar, on the left
-    - name, on the left and after the avatar
-    - handle, on the right
-- have a body, which contains the tweet text
+    - avatar, on the left :white_check_mark:
+    - name, on the left and after the avatar :white_check_mark:
+    - handle, on the right :white_check_mark:
+- have a body, which contains the tweet text :white_check_mark:
 - have a footer, which displays:
-    - how long ago the tweet was created, on the left
-    - "Flag", "Re-tweet" and "Like" icons upon hovering over the tweet,  on the right
+    - how long ago the tweet was created, on the left :white_check_mark:
+    - "Flag", "Re-tweet" and "Like" icons upon hovering over the tweet,  on the right :white_check_mark:
 
 ### Behaviour
 
