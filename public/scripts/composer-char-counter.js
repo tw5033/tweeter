@@ -1,5 +1,6 @@
 /* global $ */
 
+// character counter display for new tweets, turns red when user uses more than 140 characters
 $(() => {
   const maxCount = 140;
   let currentLength = maxCount;

@@ -1,4 +1,5 @@
 "use strict";
+ /* eslint-disable no-console */
 
 // Basic express setup:
 
@@ -6,6 +7,7 @@ const PORT          = 8080;
 const express       = require("express");
 const bodyParser    = require("body-parser");
 const app           = express();
+
 // load mongodb
 const {MongoClient} = require("mongodb");
 const MONGODB_URI = "mongodb://localhost:27017/tweeter";

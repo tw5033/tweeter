@@ -29,6 +29,7 @@ module.exports = function makeDataHelpers(db) {
 
     },
 
+    // increases tweet like count, decreases count if unliked
     likeTweet: (tweetID, colour) => {
       if(colour === 'red') {
         db.collection("tweets").findOneAndUpdate(

@@ -61,21 +61,21 @@ Individual Tweets:
 
 Navigation Bar
 - When a user clicks the Compose button in the Navigation Bar:
-- if the Compose Tweet box is currently hidden, then it is shown, and the textarea inside it is auto-focused
+- if the Compose Tweet box is currently hidden, then it is shown, and the textarea inside it is auto-focused :white_check_mark:
 - if the Compose Tweet box is currently showing, then it is hidden
-in either case, transitions between 'shown' and 'hidden' states should be animated
+in either case, transitions between 'shown' and 'hidden' states should be animated :white_check_mark:
 
 Character Counter
-- When a user types into the Compose Tweet textarea, the Character Counter is updated to show how many characters a user may still type (subtracting the number of characters they've typed from the maximum allowable character count of 140)
+- When a user types into the Compose Tweet textarea, the Character Counter is updated to show how many characters a user may still type (subtracting the number of characters they've typed from the maximum allowable character count of 140) :white_check_mark:
 
-- The Character Counter turns red (or similar) when more than 140 characters have been typed into the Compose Tweet textarea, and it shows how many characters over the 140 limit have been typed (using a negative number)
+- The Character Counter turns red (or similar) when more than 140 characters have been typed into the Compose Tweet textarea, and it shows how many characters over the 140 limit have been typed (using a negative number) :white_check_mark:
 
 Compose Tweet
-- When a user submits an invalid tweet (the tweet textarea is empty or contains more than 140 characters), an appropriate error message is displayed
+- When a user submits an invalid tweet (the tweet textarea is empty or contains more than 140 characters), an appropriate error message is displayed :white_check_mark:
 
-- When a user submits a valid tweet, the list of tweets is refreshed (displaying the new tweet), the Compose Tweet textarea is cleared, and the Character Counter is reset (to 140)
+- When a user submits a valid tweet, the list of tweets is refreshed (displaying the new tweet), the Compose Tweet textarea is cleared, and the Character Counter is reset (to 140) :white_check_mark:
 
 ### Stretch
-- When a user clicks a tweet's "Like" button, the "Like" count is updated
+- When a user clicks a tweet's "Like" button, the "Like" count is updated :white_check_mark:
 
 - Only logged-in users may "like" tweets, and they may not "like" their own tweets

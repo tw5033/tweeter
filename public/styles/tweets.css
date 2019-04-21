@@ -52,17 +52,6 @@ section h6 {
   line-height: 250%;
 }
 
-footer .like {
-  background: transparent;  
-  float: right;
-  margin: 0 0 0 -0.5em;
-  border: none;
-}
-
-footer .like:focus {
-  outline: none;
-}
-
 footer p div {
   float: right;
   font-weight: bold;

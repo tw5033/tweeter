@@ -18,16 +18,14 @@ const createTweetElement = (data) => {
   let article = $("<article>").addClass("tweet").text(data.content.text);
   let footer = $("<footer>");
   let p = $("<p>").text(moment(data.created_at).fromNow());
-  let likeCount = $("<div>").addClass("likes").text(data.num_likes);
-  let button = $("<button>").addClass("like").data("id", data._id);
-  let iOne = $("<i>").addClass("fas fa-heart");
+  let likeCount = $("<div>").addClass("likes").text(data.num_likes).data("countID", data._id);
+  let iOne = $("<i>").addClass("fas fa-heart").data("id", data._id);
   let iTwo = $("<i>").addClass("fas fa-retweet");
   let iThree = $("<i>").addClass("fas fa-flag");
 
   // appending child tags to parent
-  button.append(iOne);
   p.append(likeCount)
-   .append(button)
+   .append(iOne)
    .append(iTwo)
    .append(iThree);
   header.append(img)
@@ -42,7 +40,7 @@ const createTweetElement = (data) => {
   return section;
 }
 
-// renders all the tweets return from database
+// renders all the tweets returned from database, newest displayed at the top of the document
 const renderTweets = (tweets) => {
   for(let i = tweets.length - 1; i >= 0; i--) {
     let tweet = createTweetElement(tweets[i]);
@@ -51,7 +49,7 @@ const renderTweets = (tweets) => {
   }
 }
 
-// validates user input for new tweet
+// validates user input for new tweet, shows an error box if the input is empty or over 140 characters
 const validateTweet = () => {
   let input = $("#tweet").val();
   let error = $(".isa_error");
@@ -78,12 +76,11 @@ const loadTweets = () => {
 }
 
 // redraws the like count on click
-const redrawCount = (id) => {
+const redrawCount = (id, counter) => {
   $.get("/tweets", (tweets) => {
     tweets.forEach((tweet) => {
       if(id === tweet._id) {
-        $(".likes").empty();
-        $(".likes").text(tweet.num_likes);
+        counter.parent().find("div").text(tweet.num_likes);
       }
     });
   });
@@ -91,16 +88,17 @@ const redrawCount = (id) => {
 
 // likes a tweet when the heart icon is clicked
 const likeTweet = () => {
-  let id = $(".like").data("id");
+  event.preventDefault();
   let target = $(event.target);
-  if(target.css('color') === "rgb(255, 0, 0)") {
+  let id = target.data("id");
+  if(target.css("color") === "rgb(255, 0, 0)") {
     $.ajax(
       { url: "/tweets", 
         method: "PUT" ,
         data: { id: id, colour: "red" }
       });
     target.css("color", "#00a087"); 
-    redrawCount(id);
+    redrawCount(id, target);
   } else  {
       $.ajax(
         { url: "/tweets", 
@@ -108,33 +106,28 @@ const likeTweet = () => {
           data: { id: id, colour: "other" }
         });
       target.css("color", "red"); 
-      redrawCount(id);
+      redrawCount(id, target);
    }
  }
 
-
+ // posts a new tweet, slides error box up if displayed, redraws tweets and resets input field and counter;
+const postTweet = function() {
+  event.preventDefault();
+  $(".isa_error").slideUp();
+  let $field = $(this).serialize();
+  if(validateTweet()) {
+    $.post("/tweets", $field, () => {
+      loadTweets();
+      $("#tweet").val("");
+    });
+  }
+}
 
 
 $(() => {
-  // ajax post form
-  const form = $(".new_tweet");
-  form.on("submit", function() {
-    event.preventDefault();
-    $(".isa_error").slideUp();
-    let $field = $(this).serialize();
-    if(validateTweet()) {
-      $.post("/tweets", $field, () => {
-        loadTweets();
-        $("#tweet").val("");
-        $(".counter").text(140);
-      });
-    }
-  });
+  loadTweets();
+  $(".new_tweet").on("submit", postTweet);
  
-  $(".tweet-container").on("click", ".like", function() {
-    event.preventDefault();
-    likeTweet();
-  });
-  loadTweets();  
+  $(".tweet-container").on("click", ".fa-heart", likeTweet);
 });
 
