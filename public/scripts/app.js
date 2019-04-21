@@ -119,6 +119,7 @@ const postTweet = function() {
     $.post("/tweets", $field, () => {
       loadTweets();
       $("#tweet").val("");
+      $(".counter").text(140);
     });
   }
 }
